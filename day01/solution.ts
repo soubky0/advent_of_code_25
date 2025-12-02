@@ -46,6 +46,6 @@ export function solve(commands: string): number {
 }
 
 if (import.meta.main) {
-  const input = await Bun.file(import.meta.dir + "/input.txt").text();
+  const input = await Bun.file(import.meta.dir + "/input").text();
   console.log("Answer:", solve(input));
 }
