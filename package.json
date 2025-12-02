@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "new": "bun scripts/new-day.ts"
+    "new": "bun scripts/new.ts",
+    "solve": "bun scripts/solve.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
