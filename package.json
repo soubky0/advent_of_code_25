@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "new": "bun scripts/new.ts",
-    "solve": "bun scripts/solve.ts"
+    "solve": "bun scripts/solve.ts",
+    "part2": "bun scripts/part2.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"

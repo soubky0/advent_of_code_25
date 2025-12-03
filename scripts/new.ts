@@ -80,31 +80,55 @@ const solutionTemplate = `export function parseInput(input: string): string[] {
 
 export function solve(input: string): number {
   const lines = parseInput(input);
-  // TODO: Implement solution
+  // TODO: Implement Part 1 solution
+  return 0;
+}
+
+export function solve2(input: string): number {
+  const lines = parseInput(input);
+  // TODO: Implement Part 2 solution
   return 0;
 }
 
 if (import.meta.main) {
   const input = await Bun.file(import.meta.dir + "/input").text();
-  console.log("Answer:", solve(input));
+  const part = process.env.AOC_PART;
+  
+  if (!part || part === "1") {
+    console.log("Part 1:", solve(input));
+  }
+  if (!part || part === "2") {
+    console.log("Part 2:", solve2(input));
+  }
 }
 `;
 
 const testTemplate = `import { describe, expect, test } from "bun:test";
-import { parseInput, solve } from "./solution";
+import { parseInput, solve, solve2 } from "./solution";
 
 test("Parse Input", () => {
-  const input = \`
-  \`;
+  const input = \\\`
+  \\\`;
   const result = parseInput(input);
   expect(result).toEqual([]);
 });
 
-test("Example", () => {
-  const input = \`
-  \`;
-  const result = solve(input);
-  expect(result).toBe(0);
+describe("Part 1", () => {
+  test("Example", () => {
+    const input = \\\`
+    \\\`;
+    const result = solve(input);
+    expect(result).toBe(0);
+  });
+});
+
+describe("Part 2", () => {
+  test("Example", () => {
+    const input = \\\`
+    \\\`;
+    const result = solve2(input);
+    expect(result).toBe(0);
+  });
 });
 `;
 
