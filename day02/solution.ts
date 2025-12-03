@@ -33,10 +33,53 @@ export function getInvalidIds(lines: string[]): number[] {
   return invalidIds;
 }
 
+function hasRepeatingPattern(str: string): boolean {
+  const len = str.length;
+
+  // Try all possible pattern lengths from 1 to len/2
+  for (let patternLen = 1; patternLen <= len / 2; patternLen++) {
+    // Pattern must divide the string evenly
+    if (len % patternLen !== 0) continue;
+
+    const pattern = str.substring(0, patternLen);
+    const repetitions = len / patternLen;
+
+    // Must repeat at least twice
+    if (repetitions < 2) continue;
+
+    // Check if entire string is this pattern repeated
+    if (pattern.repeat(repetitions) === str) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+export function getInvalidIds2(lines: string[]): number[] {
+  const invalidIds: number[] = [];
+  for (const line of lines) {
+    const [start, end] = line.split("-").map(Number);
+
+    if (!start || !end) {
+      continue;
+    }
+
+    for (let i = start; i <= end; i++) {
+      const s = i.toString();
+      if (hasRepeatingPattern(s)) {
+        invalidIds.push(i);
+      }
+    }
+  }
+  return invalidIds;
+}
+
 export function solve2(input: string): number {
   const lines = parseInput(input);
-  // TODO: Implement Part 2 solution
-  return 0;
+  const invalidIds = getInvalidIds2(lines);
+  const sum = invalidIds.reduce((acc, val) => acc + val, 0);
+  return sum;
 }
 
 if (import.meta.main) {
