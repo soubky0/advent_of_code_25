@@ -17,35 +17,74 @@ export function rotate(
   startingNumber: number
 ): number {
   if (direction === "R") {
-    startingNumber += number;
-    if (startingNumber > 99) {
-      startingNumber -= 100;
-    }
+    startingNumber = (startingNumber + number) % 100;
   }
   if (direction === "L") {
-    startingNumber -= number;
-    if (startingNumber < 0) {
-      startingNumber += 100;
-    }
+    startingNumber = (((startingNumber - number) % 100) + 100) % 100;
   }
   return startingNumber;
 }
 
+export function countZeros(
+  direction: string,
+  number: number,
+  startingNumber: number
+): number {
+  let crossings = 0;
+  if (direction === "R") {
+    // Going right (increasing), we touch 0 after (100 - startingNumber) steps, then every 100 steps
+    // If starting at 0, first touch is at step 100
+    if (startingNumber === 0) {
+      crossings = Math.floor(number / 100);
+    } else {
+      crossings = Math.floor((startingNumber + number) / 100);
+    }
+  } else if (direction === "L") {
+    // Going left (decreasing), we touch 0 after startingNumber steps, then every 100 steps
+    // If starting at 0, first touch is at step 100
+    if (startingNumber === 0) {
+      crossings = Math.floor(number / 100);
+    } else {
+      crossings = Math.floor((100 - startingNumber + number) / 100);
+    }
+  }
+  return crossings;
+}
+
 export function solve(commands: string): number {
   const commandList = parseInput(commands);
-  let currentDirection = 50;
+  let currentPosition = 50;
   let zeroCount = 0;
   for (const command of commandList) {
     const [direction, number] = commandToDirection(command);
-    currentDirection = rotate(direction, number, currentDirection);
-    if (currentDirection === 0) {
+    currentPosition = rotate(direction, number, currentPosition);
+    if (currentPosition === 0) {
       zeroCount++;
     }
   }
   return zeroCount;
 }
 
+export function solve2(commands: string): number {
+  const commandList = parseInput(commands);
+  let currentPosition = 50;
+  let zeroCount = 0;
+  for (const command of commandList) {
+    const [direction, number] = commandToDirection(command);
+    zeroCount += countZeros(direction, number, currentPosition);
+    currentPosition = rotate(direction, number, currentPosition);
+  }
+  return zeroCount;
+}
+
 if (import.meta.main) {
   const input = await Bun.file(import.meta.dir + "/input").text();
-  console.log("Answer:", solve(input));
+  const part = process.env.AOC_PART;
+
+  if (!part || part === "1") {
+    console.log("Part 1:", solve(input));
+  }
+  if (!part || part === "2") {
+    console.log("Part 2:", solve2(input));
+  }
 }
