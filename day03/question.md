@@ -1,5 +1,6 @@
 # Day 3: Lobby
-You descend a short staircase, enter the surprisingly vast lobby, and are quickly cleared by the security checkpoint. When you get to the main elevators, however, you discover that each one has a red light above it: they're all *offline*.
+
+You descend a short staircase, enter the surprisingly vast lobby, and are quickly cleared by the security checkpoint. When you get to the main elevators, however, you discover that each one has a red light above it: they're all _offline_.
 
 "Sorry about that," an Elf apologizes as she tinkers with a nearby control panel. "Some kind of electrical surge seems to have fried them. I'll try to get them online soon."
 
@@ -16,18 +17,18 @@ There are batteries nearby that can supply emergency power to the escalator for 
 818181911112111
 ```
 
-The batteries are arranged into *banks*; each line of digits in your input corresponds to a single bank of batteries. Within each bank, you need to turn on *exactly two* batteries; the joltage that the bank produces is equal to the number formed by the digits on the batteries you've turned on. For example, if you have a bank like `12345` and you turn on batteries `2` and `4`, the bank would produce `24` jolts. (You cannot rearrange batteries.)
+The batteries are arranged into _banks_; each line of digits in your input corresponds to a single bank of batteries. Within each bank, you need to turn on _exactly two_ batteries; the joltage that the bank produces is equal to the number formed by the digits on the batteries you've turned on. For example, if you have a bank like `12345` and you turn on batteries `2` and `4`, the bank would produce `24` jolts. (You cannot rearrange batteries.)
 
 You'll need to find the largest possible joltage each bank can produce. In the above example:
 
-- In `*98*7654321111111`, you can make the largest joltage possible, *`98`*, by turning on the first two batteries.
+- In `*98*7654321111111`, you can make the largest joltage possible, _`98`_, by turning on the first two batteries.
 
-- In `*8*1111111111111*9*`, you can make the largest joltage possible by turning on the batteries labeled `8` and `9`, producing *`89`* jolts.
+- In `*8*1111111111111*9*`, you can make the largest joltage possible by turning on the batteries labeled `8` and `9`, producing _`89`_ jolts.
 
-- In `2342342342342*78*`, you can make *`78`* by turning on the last two batteries (marked `7` and `8`).
+- In `2342342342342*78*`, you can make _`78`_ by turning on the last two batteries (marked `7` and `8`).
 
-- In `818181*9*1111*2*111`, the largest joltage you can produce is *`92`*.
+- In `818181*9*1111*2*111`, the largest joltage you can produce is _`92`_.
 
 The total output joltage is the sum of the maximum joltage from each bank, so in this example, the total output joltage is `98` + `89` + `78` + `92` = `*357*`.
 
-There are many batteries in front of you. Find the maximum joltage possible from each bank; *what is the total output joltage?*
+There are many batteries in front of you. Find the maximum joltage possible from each bank; _what is the total output joltage?_
