@@ -5,6 +5,23 @@ export function parseInput(input: string): string[] {
     .map((line) => line.trim());
 }
 
+export function getJoltage2(input: string): number {
+  const stack: string[] = [];
+  let toRemove = input.length - 12;
+  for (const digit of input) {
+    while (
+      stack.length > 0 &&
+      toRemove > 0 &&
+      stack[stack.length - 1]! < digit
+    ) {
+      stack.pop();
+      toRemove--;
+    }
+    stack.push(digit);
+  }
+  return parseInt(stack.slice(0, 12).join(""));
+}
+
 export function getJoltage(s: string): number {
   let max = 0;
   for (let i = 0; i < s.length; i++) {
@@ -29,8 +46,11 @@ export function solve(input: string): number {
 
 export function solve2(input: string): number {
   const lines = parseInput(input);
-  // TODO: Implement Part 2 solution
-  return 0;
+  let res = 0;
+  for (const line of lines) {
+    res += getJoltage2(line);
+  }
+  return res;
 }
 
 if (import.meta.main) {
